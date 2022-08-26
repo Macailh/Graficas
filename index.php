@@ -11,7 +11,7 @@
 		<div class="row">
 			<div class="col-sm-12">
 				<div class="panel panel-primary">
-					<div class="panel panel-heading">
+					<div class="panel panel-heading text-center">
 						Graficas con plotly js (facultad autodidacta)
 					</div>
 					<div class="panel panel-body">

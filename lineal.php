@@ -57,7 +57,8 @@
 	var trace1 = {
 		x: datosX,
 		y: datosY,
-		type: 'scatter'
+		type: 'scatter',
+		name:'DATOS 1'
 	};
 	
 
@@ -70,7 +71,8 @@
 	var trace2 = {
 		x: datosX2,
 		y: datosY2,
-		type: 'scatter'
+		type: 'scatter',
+		name:'DATOS 2'
 	};
 
 	var data = [trace1, trace2];
