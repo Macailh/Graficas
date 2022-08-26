@@ -17,10 +17,10 @@
 					<div class="panel panel-body">
 						<div class="row">
 							<div class="col-sm-6">
-								<div id="cargaLineal"></div>
+								<div id="cargaLineal">Grafica Lineal</div>
 							</div>
 							<div class="col-sm-6">
-								<div id="cargaBarras"></div>
+								<div id="cargaBarras">Grafica de barras</div>
 							</div>
 						</div>
 					</div>
