@@ -1,22 +1,15 @@
 <?php
-require_once "php/conexion.php";
-$result;
-$device;
+	require_once "php/conexion.php";
+	$result;
+	$device;
 
-$sql = 'SELECT * FROM DATOS ORDER BY id DESC LIMIT 1 ';
+	$sql = 'SELECT * FROM DATOS ORDER BY id DESC LIMIT 1 ';
+	$result = $conn->query($sql);
+	$rows = $result->fetchAll();
 
-$result = $conn->query($sql);
-
-$rows = $result->fetchAll();
-
-$sql2 = 'SELECT DISTINCT device,id FROM DATOS GROUP BY device desc ';
-
-$result2 = $conn->query($sql2);
-
-$rows2 = $result2->fetchAll();
-
-
-
+	$sql2 = 'SELECT DISTINCT device,id FROM DATOS GROUP BY device desc ';
+	$result2 = $conn->query($sql2);
+	$rows2 = $result2->fetchAll();
 ?>
 <!DOCTYPE html>
 <html>
@@ -69,24 +62,18 @@ $rows2 = $result2->fetchAll();
 								<div id="cargaco2" class="col-sm-10"></div>
 
 								<?php
-								foreach ($rows as $row) {
-									$c = $row['CO2'];
-									if ($c > 0 && $c < 300) {
-										$c = "circle";
-									} else if ($c > 300 && $c < 600) {
-										$c = "circle2";
-									} else if ($c > 599) {
-										$c = "circle3";
-									}
+									foreach ($rows as $row) {
+										$c = $row['CO2'];
+										if ($c > 0 && $c < 300) {
+											$c = "circle";
+										} else if ($c > 300 && $c < 600) {
+											$c = "circle2";
+										} else if ($c > 599) {
+											$c = "circle3";
+										}
 								?>
-
-									<div style=" margin-top: 180px;
-		 font-size:30px;"><?php echo $row['CO2']; ?></div>
+									<div style=" margin-top: 180px;font-size:30px;"><?php echo $row['CO2']; ?></div>
 									<div id='<?php echo $c; ?>' class="parpadea"></div>
-
-
-
-
 								<?php } ?>
 							</div>
 						</div>

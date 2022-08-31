@@ -3,7 +3,7 @@
 	require_once "php/conexion.php"; 
 	$conexion=conexion();
 	$sql="SELECT FECHA,TEMPERATURA 
-			from DATOS";
+			from DATOS ORDER BY FECHA ASC";
 	$result=mysqli_query($conexion,$sql);
 	$valoresY=array();//TEMPERATURA
 	$valoresX=array();//fechas

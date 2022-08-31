@@ -3,7 +3,7 @@
 	require_once "php/conexion.php"; 
 	$conexion=conexion();
 	$sql="SELECT FECHA,HUMEDAD 
-			from DATOS";
+			from DATOS ORDER BY FECHA ASC";
 	$result=mysqli_query($conexion,$sql);
 	$valoresY=array();//montos
 	$valoresX=array();//fechas
@@ -60,5 +60,5 @@
 	
 	var data = [trace1];
 
-	Plotly.newPlot('graficaLineal', data,layout);
+	Plotly.newPlot('graficaLineal', data, layout);
 </script>
