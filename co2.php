@@ -71,6 +71,7 @@
 	datosX3 = crearCadenaLineal('<?php echo $datosX3 ?>');
 	datosY3 = crearCadenaLineal('<?php echo $datosY3 ?>');
 
+
 	var trace1 = {
 		x: datosX,
 		y: datosY,
@@ -94,7 +95,7 @@
 		},
 		name: 'Dispositivo 2',
 		line: {
-			color: 'rgb(200, 128, 10)',
+			color: 'rgb(25,25,112)',
 			width: 3
 		}
 	};
@@ -108,26 +109,27 @@
 		},
 		name: 'Dispositivo 3',
 		line: {
-			color: 'rgb(150, 50, 10)',
+			color: 'rgb(220,20,60)',
 			width: 3
 		}
 	};
 
 	var layout = {
-		title: 'CO2',
-		showlegend: false,
-
+		title: 'CO2'
 	};
+
+	var options = {
+		displayModeBar: true,
+		displaylogo: false,
+		responsive: true,
+		modeBarButtonsToRemove: ['toggleSpikelines', 'hoverClosestCartesian', 'hoverCompareCartesian']
+	}
 
 	var data = [trace1];
 	var data2 = [trace2];
 	var data3 = [trace3];
 
-	console.log(data);
-	console.log(data2);
-	console.log(data3);
-
 	//Plotly.newPlot('graficaco2', data, layout);
 
-	Plotly.newPlot('graficaco2', [trace1, trace2, trace3]);
+	Plotly.newPlot('graficaco2', [trace1, trace2, trace3], layout, options);
 </script>
