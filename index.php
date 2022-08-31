@@ -22,7 +22,7 @@ $rows2 = $result2->fetchAll();
 	<link rel="stylesheet" type="text/css" href="librerias/bootstrap/css/manual.css">
 </head>
 
-<body>
+<body class="bg-info">
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-12">
@@ -48,27 +48,8 @@ $rows2 = $result2->fetchAll();
 										<?php } ?>
 									</select>
 									<button id="BTNDEVICE" type="button" class="btn btn-success active"> SEND</button>
-									
+
 								</div>
-							</div>
-							<div id="CO" style=" width: 1120px;" class="col-sm-12">
-								<div id="cargaco2" class="col-sm-10"></div>
-								<?php
-										foreach ($rows as $row) {
-											$c = $row['CO2'];
-											if ($c > 0 && $c < 300) {
-												$c = "circle";
-											} else if ($c > 300 && $c < 600) {
-												$c = "circle2";
-											} else if ($c > 599) {
-												$c = "circle3";
-											}
-									?>
-										<div style=" margin-top: 180px;font-size:30px;"><?php echo $row['CO2']; ?></div>
-										<div id='<?php echo $c; ?>' class="parpadea"></div>
-									<?php } ?>
-
-
 							</div>
 							<div id="TEM" style=" width: 1120px;" class="col-sm-12">
 								<div id="cargaTemperatura" class="col-sm-12"></div>
@@ -125,41 +106,41 @@ $rows2 = $result2->fetchAll();
 
 	}, 1000)
 
-	
 
-		$(document).ready(function() {
-			$('#cargaTemperatura').load('temperatura.php');
-			$('#cargaHumedad').load('humedad.php');
-			$('#cargaco2').load('co2.php');
-		});
 
-		$("#BTNTODO").click(function() {
+	$(document).ready(function() {
+		$('#cargaTemperatura').load('temperatura.php');
+		$('#cargaHumedad').load('humedad.php');
+		$('#cargaco2').load('co2.php');
+	});
 
-			$('#TEM').show();
-			$('#HUM').show();
-			$('#CO').show();
-		});
+	$("#BTNTODO").click(function() {
 
-		$("#BTNHUM").click(function() {
+		$('#TEM').show();
+		$('#HUM').show();
+		$('#CO').show();
+	});
 
-			$('#TEM').show();
-			$('#HUM').hide();
-			$('#CO').hide();
-		});
+	$("#BTNHUM").click(function() {
 
-		$("#BTNTEM").click(function() {
+		$('#TEM').show();
+		$('#HUM').hide();
+		$('#CO').hide();
+	});
 
-			$('#TEM').hide();
-			$('#HUM').show();
-			$('#CO').hide();
-		});
+	$("#BTNTEM").click(function() {
 
-		$("#BTNCO2").click(function() {
+		$('#TEM').hide();
+		$('#HUM').show();
+		$('#CO').hide();
+	});
 
-			$('#TEM').hide();
-			$('#HUM').hide();
-			$('#CO').show();
-		});
+	$("#BTNCO2").click(function() {
 
-		nombre = document.getElementById("device").value;
+		$('#TEM').hide();
+		$('#HUM').hide();
+		$('#CO').show();
+	});
+
+	nombre = document.getElementById("device").value;
 </script>
