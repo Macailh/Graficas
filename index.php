@@ -22,7 +22,7 @@ $rows2 = $result2->fetchAll();
 <html>
 
 <head>
-	<title>Graficos con plotly</title>
+	<title>Graficos</title>
 	<link rel="stylesheet" type="text/css" href="librerias/bootstrap/css/bootstrap.css">
 	<script src="librerias/jquery-3.3.1.min.js"></script>
 	<script src="librerias/plotly-latest.min.js"></script>
@@ -71,18 +71,22 @@ $rows2 = $result2->fetchAll();
 								<?php
 								foreach ($rows as $row) {
 									$c = $row['CO2'];
+									$class = "";
 									if ($c > 0 && $c < 300) {
 										$c = "circle";
+										$class = " ";
 									} else if ($c > 300 && $c < 600) {
 										$c = "circle2";
+										$class = "parpadea";
 									} else if ($c > 599) {
 										$c = "circle3";
+										$class = "parpadea";
 									}
 								?>
 
-									<div style=" margin-top: 180px;
+									<div style=" margin-top: 205px;
 		 font-size:30px;"><?php echo $row['CO2']; ?></div>
-									<div id='<?php echo $c; ?>' class="parpadea"></div>
+									<div id='<?php echo $c; ?>' class="<?php echo $class; ?>"></div>
 
 
 
@@ -100,40 +104,51 @@ $rows2 = $result2->fetchAll();
 </html>
 
 <script type="text/javascript">
-	$(document).ready(function() {
+	setInterval(function() {
+
+		$('#cargaco2').load('co2.php');
 		$('#cargaTemperatura').load('temperatura.php');
 		$('#cargaHumedad').load('humedad.php');
-		$('#cargaco2').load('co2.php');
-	});
+		// console.log("Ha pasado 1 segundo.");
 
-	$("#BTNTODO").click(function() {
 
-		$('#TEM').show();
-		$('#HUM').show();
-		$('#CO').show();
-	});
+	}, 1000)
 
-	$("#BTNHUM").click(function() {
+	
 
-		$('#TEM').show();
-		$('#HUM').hide();
-		$('#CO').hide();
-	});
+		$(document).ready(function() {
+			$('#cargaTemperatura').load('temperatura.php');
+			$('#cargaHumedad').load('humedad.php');
+			$('#cargaco2').load('co2.php');
+		});
 
-	$("#BTNTEM").click(function() {
+		$("#BTNTODO").click(function() {
 
-		$('#TEM').hide();
-		$('#HUM').show();
-		$('#CO').hide();
-	});
+			$('#TEM').show();
+			$('#HUM').show();
+			$('#CO').show();
+		});
 
-	$("#BTNCO2").click(function() {
+		$("#BTNHUM").click(function() {
 
-		$('#TEM').hide();
-		$('#HUM').hide();
-		$('#CO').show();
-	});
+			$('#TEM').show();
+			$('#HUM').hide();
+			$('#CO').hide();
+		});
 
-	nombre = document.getElementById("device").value;
-	console.log(nombre);
+		$("#BTNTEM").click(function() {
+
+			$('#TEM').hide();
+			$('#HUM').show();
+			$('#CO').hide();
+		});
+
+		$("#BTNCO2").click(function() {
+
+			$('#TEM').hide();
+			$('#HUM').hide();
+			$('#CO').show();
+		});
+
+		nombre = document.getElementById("device").value;
 </script>
