@@ -20,7 +20,7 @@
 
 	//Dispositivo 2
 	$sql2="SELECT FECHA,TEMPERATURA 
-			from DATOS WHERE device = 2 ORDER BY FECHA ASC";
+			from DATOS WHERE DEVICE = 2 ORDER BY FECHA ASC";
 	$result2=mysqli_query($conexion,$sql2);
 	$valoresY2=array();//TEMPERATURA
 	$valoresX2=array();//fechas
@@ -35,7 +35,7 @@
 
 	//Dispositivo 3
 	$sql3="SELECT FECHA,TEMPERATURA 
-			from DATOS WHERE device = 3 ORDER BY FECHA ASC";
+			from DATOS WHERE DEVICE = 3 ORDER BY FECHA ASC";
 	$result3=mysqli_query($conexion,$sql3);
 	$valoresY3=array();//TEMPERATURA
 	$valoresX3=array();//fechas

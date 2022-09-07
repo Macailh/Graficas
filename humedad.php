@@ -5,7 +5,7 @@
 
 	//Dispositivo 1
 	$sql="SELECT FECHA,HUMEDAD 
-			from DATOS WHERE device = 1 ORDER BY FECHA ASC";
+			from DATOS WHERE DEVICE = 1 ORDER BY FECHA ASC";
 	$result=mysqli_query($conexion,$sql);
 	$valoresY=array();//montos
 	$valoresX=array();//fechas

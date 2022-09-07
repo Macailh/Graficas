@@ -4,7 +4,7 @@
 
 	//Dispositivo 1
 	$sql = "SELECT FECHA,CO2
-				FROM DATOS WHERE device = 1 ORDER BY FECHA";
+				FROM DATOS WHERE DEVICE = 1 ORDER BY FECHA";
 	$result = mysqli_query($conexion, $sql);
 	$valoresY = array(); //montos
 	$valoresX = array(); //fechas
@@ -19,7 +19,7 @@
 
 	//Dispositivo 2
 	$sql2 = "SELECT FECHA,CO2
-				FROM DATOS WHERE device = 2 ORDER BY FECHA";
+				FROM DATOS WHERE DEVICE = 2 ORDER BY FECHA";
 	$result2 = mysqli_query($conexion, $sql2);
 	$valoresY2 = array(); //montos
 	$valoresX2 = array(); //fechas
@@ -34,7 +34,7 @@
 
 	//Dispositivo 3
 	$sql3 = "SELECT FECHA,CO2
-				FROM DATOS WHERE device = 3 ORDER BY FECHA";
+				FROM DATOS WHERE DEVICE = 3 ORDER BY FECHA";
 	$result3 = mysqli_query($conexion, $sql3);
 	$valoresY3 = array(); //montos
 	$valoresX3 = array(); //fechas
@@ -75,7 +75,7 @@
 	var trace1 = {
 		x: datosX,
 		y: datosY,
-		type: 'scatter',
+		type: 'lines',
 		line: {
 			shape: 'hvh'
 		},
