@@ -125,5 +125,5 @@
 	
 	var data = [trace1];
 
-	Plotly.newPlot('graficaTemperatura', [trace1, trace2, trace3], layout, options);
+	Plotly.react('graficaTemperatura', [trace1, trace2, trace3], layout, options);
 </script>

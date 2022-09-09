@@ -125,5 +125,5 @@
 	
 	var data = [trace1];
 
-	Plotly.newPlot('graficaLineal', [trace1, trace2, trace3], layout, options);
+	Plotly.react('graficaLineal', [trace1, trace2, trace3], layout, options);
 </script>

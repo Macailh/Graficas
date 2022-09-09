@@ -17,11 +17,11 @@ $rows2 = $result2->fetchAll();
 
 <head>
 
-	<title>Graficos</title>
+	<title>Estación de CO2</title>
 	<link rel="stylesheet" type="text/css" href="librerias/bootstrap/css/bootstrap.css">
 	<script src="librerias/jquery-3.3.1.min.js"></script>
 	<!-- <script src="librerias/plotly-latest.min.js"></script> -->
-	<script src="https://cdn.plot.ly/plotly-2.14.0.min.js"></script>
+	<script src="librerias/plotly-latest.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="librerias/bootstrap/css/manual.css">
 </head>
 
@@ -29,19 +29,19 @@ $rows2 = $result2->fetchAll();
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-12">
-				<div class="panel panel-primary">
+				<div class="panel panel-primary" style="height: 100vh;">
 					<div class="panel panel-heading text-center">
-						Estación de CO2
+						<h1 style="margin-top: 10px;">Estación de CO2</h1>
 					</div>
 					<div class="panel panel-body">
 						<div class="row">
 							<div class="col-sm-12">
 								<div id="" class="col-sm-12 content-select">
-									<button id="BTNTODO" type="button" class="btn btn-secondary active"> TODO</button>
+									<button id="BTNCO2" type="button" class="btn btn-secondary active"> CO2</button>
 									<button id="BTNHUM" type="button" class="btn btn-secondary active"> HUMEDAD</button>
 									<button id="BTNTEM" type="button" class="btn btn-secondary active"> TEMPERATURA</button>
-									<button id="BTNCO2" type="button" class="btn btn-secondary active"> CO2</button>
 									<button id="BTNCPU" type="button" class="btn btn-secondary active"> TEM CPU</button>
+									<button id="BTNTODO" type="button" class="btn btn-secondary active"> TODO</button>
 									<option value="0">Seleccione:</option>
 									<select name="device" id="device">
 										<?php
@@ -55,14 +55,8 @@ $rows2 = $result2->fetchAll();
 
 								</div>
 							</div>
-							<div id="TEM" style=" width: 1120px;" class="col-sm-12">
-								<div id="cargaTemperatura" class="col-sm-12"></div>
-							</div>
-							<div id="HUM" style=" width: 1120px;" class="col-sm-12">
-								<div id="cargaHumedad" class="col-sm-12"></div>
-							</div>
 							<div id="CO" style=" width: 1120px;" class="col-sm-12">
-								<div id="cargaco2" class="col-sm-10"></div>
+								<div id="cargaco2" class="col-sm-12"></div>
 
 								<!-- <?php
 										foreach ($rows as $row) {
@@ -80,8 +74,9 @@ $rows2 = $result2->fetchAll();
 											}
 										?>
 
-									<div style=" margin-top: 205px;
-		 font-size:30px;"><?php echo $row['CO2']; ?></div>
+									<div style=" margin-top: 205px;font-size:30px;">
+										<?php echo $row['CO2']; ?>
+									</div>
 									<div id='<?php echo $c; ?>' class="<?php echo $class; ?>"></div>
 
 
@@ -89,12 +84,19 @@ $rows2 = $result2->fetchAll();
 
 								<?php } ?> -->
 							</div>
+							<div id="TEM" style=" width: 1120px;" class="col-sm-12">
+								<div id="cargaTemperatura" class="col-sm-12"></div>
+							</div>
+							<div id="HUM" style=" width: 1120px;" class="col-sm-12">
+								<div id="cargaHumedad" class="col-sm-12"></div>
+							</div>
+							
 							<div id="CPU" style=" width: 1120px;" class="col-sm-12">
 								<div id="cargaCPU" class="col-sm-12"></div>
 							</div>
-							<div style=" width: 1120px;" class="col-sm-12">
+							<!-- <div style=" width: 1120px;" class="col-sm-12">
 								<div id="cargaindicador" class="col-sm-12"></div>
-							</div>
+							</div> -->
 						</div>
 					</div>
 				</div>
@@ -107,21 +109,39 @@ $rows2 = $result2->fetchAll();
 
 <script type="text/javascript">
 	$(document).ready(function() {
-		$('#cargaTemperatura').load('temperatura.php');
-		$('#cargaHumedad').load('humedad.php');
 		$('#cargaco2').load('co2.php');
-		$('#cargaCPU').load('cpu.php');
 	});
 
 	setInterval(function() {
+		
+		console.log($('#cargaco2').is(':empty'));
+		if ($('#cargaco2').is(':empty') == false) {
+			$('#cargaco2').load('co2.php');
+			console.log('Se cargo el grafico de CO2');
 
-		$('#cargaco2').load('co2.php');
-		$('#cargaTemperatura').load('temperatura.php');
-		$('#cargaHumedad').load('humedad.php');
+		}
+		if ($('#cargaTemperatura').is(':empty') == false) {
+			$('#cargaTemperatura').load('temperatura.php'); 
+			console.log('Se cargo el grafico de temperatura');
+
+		}
+		if ($('#cargaHumedad').is(':empty') == false) {
+			$('#cargaHumedad').load('humedad.php');
+			console.log('Se cargo el grafico de HUMEDAD');
+
+		}
+		if ($('#cargaCPU').is(':empty') == false) {
+			$('#cargaCPU').load('cpu.php');
+			console.log('Se cargo el grafico de CPU');
+		}
+
+		// console.log($('#cargaTemperatura').is(':empty'));
+		// console.log($('#cargaCPU').is(':empty'));
+		
 		// console.log("Ha pasado 1 segundo.");
 
 
-	}, 60000)
+	}, 6000)
 	// $("#BTNDISABLED").toggle(function() {
 	// 	var div = document.getElementById('cargaTemperatura');
 	// 	div.classList.remove('REC1');
@@ -141,46 +161,45 @@ $rows2 = $result2->fetchAll();
 	// });
 
 	$("#BTNTODO").click(function() {
-
-		$('#TEM').show();
-		$('#HUM').show();
-		$('#CO').show();
-		var obj = document.getElementById("HUM");
-		obj.style.removeProperty("display");
-		var obj = document.getElementById("HUM");
-		obj.style.removeProperty("display");
-		var obj = document.getElementById("HUM");
-		obj.style.removeProperty("display");
+		$('#cargaco2').empty();
+		$('#cargaTemperatura').empty();
+		$('#cargaHumedad').empty();
+		$('#cargaCPU').empty();
+		$('#cargaco2').load('co2.php');
+		$('#cargaTemperatura').load('temperatura.php');
+		$('#cargaHumedad').load('humedad.php');
+		$('#cargaCPU').load('cpu.php');
 	});
 
 	$("#BTNHUM").click(function() {
-
-		$('#TEM').hide();
-		$('#HUM').show();
-		$('#CO').hide();
+		$('#cargaco2').empty();
+		$('#cargaTemperatura').empty();
+		$('#cargaHumedad').empty();
+		$('#cargaCPU').empty();
+		$('#cargaHumedad').load('humedad.php');
 	});
 
 	$("#BTNTEM").click(function() {
-
-		$('#TEM').show();
-		$('#HUM').hide();
-		$('#CO').hide();
-
+		$('#cargaco2').empty();
+		$('#cargaTemperatura').empty();
+		$('#cargaHumedad').empty();
+		$('#cargaCPU').empty();
+		$('#cargaTemperatura').load('temperatura.php');
 	});
 
 	$("#BTNCO2").click(function() {
-
-		$('#TEM').hide();
-		$('#HUM').hide();
-		$('#CO').show();
+		$('#cargaCPU').empty();
+		$('#cargaco2').empty();
+		$('#cargaTemperatura').empty();
+		$('#cargaHumedad').empty();
+		$('#cargaco2').load('co2.php');
 	});
 	$("#BTNCPU").click(function() {
-
-		$('#TEM').hide();
-		$('#HUM').hide();
-		$('#CO').hide();
-		$('#CPU').show();
-
+		$('#cargaco2').empty();
+		$('#cargaTemperatura').empty();
+		$('#cargaHumedad').empty();
+		$('#cargaCPU').empty();
+		$('#cargaCPU').load('cpu.php');
 	});
 
 	nombre = document.getElementById("device").value;

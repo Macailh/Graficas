@@ -1,51 +1,51 @@
 <?php
-	require_once "php/conexion.php";
-	$conexion = conexion();
+require_once "php/conexion.php";
+$conexion = conexion();
 
-	//Dispositivo 1
-	$sql = "SELECT FECHA,CO2
+//Dispositivo 1
+$sql = "SELECT FECHA,CO2
 				FROM DATOS WHERE DEVICE = 1 ORDER BY FECHA";
-	$result = mysqli_query($conexion, $sql);
-	$valoresY = array(); //montos
-	$valoresX = array(); //fechas
+$result = mysqli_query($conexion, $sql);
+$valoresY = array(); //montos
+$valoresX = array(); //fechas
 
-	while ($ver = mysqli_fetch_row($result)) {
-		$valoresY[] = $ver[1];
-		$valoresX[] = $ver[0];
-	}
+while ($ver = mysqli_fetch_row($result)) {
+	$valoresY[] = $ver[1];
+	$valoresX[] = $ver[0];
+}
 
-	$datosX = json_encode($valoresX);
-	$datosY = json_encode($valoresY);
+$datosX = json_encode($valoresX);
+$datosY = json_encode($valoresY);
 
-	//Dispositivo 2
-	$sql2 = "SELECT FECHA,CO2
+//Dispositivo 2
+$sql2 = "SELECT FECHA,CO2
 				FROM DATOS WHERE DEVICE = 2 ORDER BY FECHA";
-	$result2 = mysqli_query($conexion, $sql2);
-	$valoresY2 = array(); //montos
-	$valoresX2 = array(); //fechas
+$result2 = mysqli_query($conexion, $sql2);
+$valoresY2 = array(); //montos
+$valoresX2 = array(); //fechas
 
-	while ($ver2 = mysqli_fetch_row($result2)) {
-		$valoresY2[] = $ver2[1];
-		$valoresX2[] = $ver2[0];
-	}
+while ($ver2 = mysqli_fetch_row($result2)) {
+	$valoresY2[] = $ver2[1];
+	$valoresX2[] = $ver2[0];
+}
 
-	$datosX2 = json_encode($valoresX2);
-	$datosY2 = json_encode($valoresY2);
+$datosX2 = json_encode($valoresX2);
+$datosY2 = json_encode($valoresY2);
 
-	//Dispositivo 3
-	$sql3 = "SELECT FECHA,CO2
+//Dispositivo 3
+$sql3 = "SELECT FECHA,CO2
 				FROM DATOS WHERE DEVICE = 3 ORDER BY FECHA";
-	$result3 = mysqli_query($conexion, $sql3);
-	$valoresY3 = array(); //montos
-	$valoresX3 = array(); //fechas
+$result3 = mysqli_query($conexion, $sql3);
+$valoresY3 = array(); //montos
+$valoresX3 = array(); //fechas
 
-	while ($ver3 = mysqli_fetch_row($result3)) {
-		$valoresY3[] = $ver3[1];
-		$valoresX3[] = $ver3[0];
-	}
+while ($ver3 = mysqli_fetch_row($result3)) {
+	$valoresY3[] = $ver3[1];
+	$valoresX3[] = $ver3[0];
+}
 
-	$datosX3 = json_encode($valoresX3);
-	$datosY3 = json_encode($valoresY3);
+$datosX3 = json_encode($valoresX3);
+$datosY3 = json_encode($valoresY3);
 ?>
 <div id="graficaco2"></div>
 
@@ -125,11 +125,12 @@
 		modeBarButtonsToRemove: ['toggleSpikelines', 'hoverClosestCartesian', 'hoverCompareCartesian']
 	}
 
-	var data = [trace1];
+	var data = [trace1,trace2, trace3];
 	var data2 = [trace2];
 	var data3 = [trace3];
 
 	//Plotly.newPlot('graficaco2', data, layout);
 
-	Plotly.newPlot('graficaco2', [trace1, trace2, trace3], layout, options);
+	Plotly.react('graficaco2', data, layout, options);
+
 </script>
